@@ -1,10 +1,13 @@
 #!/bin/bash
 # Telegraf install script
 
-if [awk -F= '/^NAME/{print $2}' /etc/os-release = "Ubuntu"]
+osrelease=$(awk -F= '/^NAME/{print $2}' /etc/os-release)
+echo $osrelease
+
+if [ $osrelease = '"Ubuntu"' ]
 then  
   echo "It'sa me, Ubuntu"
-elif [awk -F= '/^NAME/{print $2}' /etc/os-release = "CentOS Linux"]
+elif [ $osrelease = '"CentOS Linux"' ]
 then
   echo "It's CentOS"
 else
