@@ -127,7 +127,16 @@ resources:
           template: |
             #!/bin/bash -v
             sudo -i
-            echo "127.0.0.1    $serverName" >> /etc/hosts
+            rm /etc/hosts
+            echo "127.0.0.1	localhost.localdomain	localhost" >> /etc/hosts
+            echo "127.0.1.1 $serverName" >> /etc/hosts
+            echo "::1       localhost6.localdomain6	localhost6" >> /etc/hosts
+            echo "# The following lines are desirable for IPv6 capable hosts" >> /etc/hosts
+            echo "::1     localhost ip6-localhost ip6-loopback" >> /etc/hosts
+            echo "fe00::0 ip6-localnet" >> /etc/hosts
+            echo "ff02::1 ip6-allnodes" >> /etc/hosts
+            echo "ff02::2 ip6-allrouters" >> /etc/hosts
+            echo "ff02::3 ip6-allhosts" >> /etc/hosts
             rm -rf /var/lib/apt/lists/lock
             export http_proxy=$proxy
             export https_proxy=$proxy
